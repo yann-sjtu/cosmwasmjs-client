@@ -20,10 +20,10 @@ async function main() {
   //   Slip10RawIndex.normal(0),
   // ];
   const path = stringToPath("m/44'/118'/0'/0/0");
-  const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {hdPaths:[path], "prefix":"ex"});
+  const wallet = await Secp256k1HdWallet.fromMnemonic(mnemonic, {hdPaths:[path], "prefix":"wasm"});
   console.log(wallet.mnemonic);
   const accs = await wallet.getAccounts();
-  console.log(accs);
+  console.log('@@@@',accs);
 
   // Using
   const client = await SigningCosmWasmClient.connectWithSigner(
@@ -33,16 +33,15 @@ async function main() {
   console.log(client);
   const codes = await client.getCodes();
   console.log(codes);
-  const contract = await client.getContract("ex14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s6fqu27");
+  const contract = await client.getContract("wasm1wug8sewp6cedgkmrmvhl3lf3tulagm9hnvy8p0rppz9yjw0g4wtqhs9hr8");
   console.log(contract);
-  const res = await client.queryContractSmart("ex14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s6fqu27", {"balance":{"address":"ex1eutyuqqase3eyvwe92caw8dcx5ly8s544q3hmq"}})
+  const res = await client.queryContractSmart("wasm1wug8sewp6cedgkmrmvhl3lf3tulagm9hnvy8p0rppz9yjw0g4wtqhs9hr8", {"balance":{"address":"wasm1eutyuqqase3eyvwe92caw8dcx5ly8s54h4k8mu"}})
   console.log(res);
-  const res2 = await client.queryContractSmart("ex14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s6fqu27", {"balance":{"address":"ex1h0j8x0v9hs4eq6ppgamemfyu4vuvp2sl0q9p3v"}})
+  const res2 = await client.queryContractSmart("wasm1wug8sewp6cedgkmrmvhl3lf3tulagm9hnvy8p0rppz9yjw0g4wtqhs9hr8", {"balance":{"address":"wasm1cs6528nz3vjemjf4k0ypr2yawdqw3p5yly5yvs"}})
   console.log(res2);
-  const res3 = await client.execute("ex1eutyuqqase3eyvwe92caw8dcx5ly8s544q3hmq", "ex14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s6fqu27", {"transfer":{"amount":"10","recipient":"ex1h0j8x0v9hs4eq6ppgamemfyu4vuvp2sl0q9p3v"}}, {"amount":parseCoins("1okt"),"gas":"200000"}, "", null);
+  const res3 = await client.execute("wasm1eutyuqqase3eyvwe92caw8dcx5ly8s54h4k8mu", "wasm1wug8sewp6cedgkmrmvhl3lf3tulagm9hnvy8p0rppz9yjw0g4wtqhs9hr8", {"transfer":{"amount":"10","recipient":"wasm1cs6528nz3vjemjf4k0ypr2yawdqw3p5yly5yvs"}}, {"amount":parseCoins("1ustake"),"gas":"200000"}, "", null);
   console.log(res3);
-  client.sign()
-  const res4 = await client.queryContractSmart("ex14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s6fqu27", {"balance":{"address":"ex1eutyuqqase3eyvwe92caw8dcx5ly8s544q3hmq"}})
+  const res4 = await client.queryContractSmart("wasm1wug8sewp6cedgkmrmvhl3lf3tulagm9hnvy8p0rppz9yjw0g4wtqhs9hr8", {"balance":{"address":"wasm1eutyuqqase3eyvwe92caw8dcx5ly8s54h4k8mu"}})
   console.log(res4);
 }
 
