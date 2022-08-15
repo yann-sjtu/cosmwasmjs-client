@@ -5,6 +5,7 @@ const config = {
   chainId: "exchain-67",
   rpcEndpoint: "localhost:26657",
   prefix: "ex",
+  gasPrice: "10000000wei",
 };
 
 async function main() {
@@ -16,7 +17,7 @@ async function main() {
   const chainID = await client.getChainId();
   console.log(chainID);
 
-  const res = await client.sendTokens(keplrAddr, captain, parseCoins("1000000000000000000wei"), {"amount":parseCoins("20000000000000wei"),"gas":"200000"});
+  const res = await client.sendTokens(keplrAddr, captain, parseCoins("1000000000000000000wei"), auto,"gas":"200000"});
   console.log(res);
 
   // TODO

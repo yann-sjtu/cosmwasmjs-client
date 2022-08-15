@@ -70,13 +70,16 @@ document.getElementById("oInput").addEventListener('change', function selectedFi
 document.getElementById("upload").addEventListener('click', async function selectedFilechanged( ) {
   var accs = await wallet1.getAccounts()
   var address = accs[0].address
-  console.log(address)
+  console.log("upload",address)
   const cwclient = await SigningCosmWasmClient.connectWithSigner(
       rpcEndpoint,
       wallet1,
+      {
+        "gasPrice":"10000000wei"
+      }
   );
 
-  var result = await cwclient.upload(address,filedata,{"amount":parseCoins("200000000000000000wei"),"gas":"20000000"})
+  var result = await cwclient.upload(address,filedata,"auto")
   console.log("wasm upload",result)
   var codes = await cwclient.getCodes()
   console.log("get codes",codes)
