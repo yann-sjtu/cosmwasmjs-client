@@ -79,7 +79,8 @@ document.getElementById("upload").addEventListener('click', async function selec
       }
   );
 
-  var result = await cwclient.upload(address,filedata,"auto")
+  console.log("wasm updalod addr",address)
+  var result = await cwclient.upload(address,filedata,{"amount":parseCoins("100000000000000000wei"),"gas":"20000000"})
   console.log("wasm upload",result)
   var codes = await cwclient.getCodes()
   console.log("get codes",codes)
@@ -124,7 +125,7 @@ document.getElementById("upload").addEventListener('click', async function selec
 
 });
 
-document.getElementById("init").addEventListener('click', async function selectedFilechanged1( ) {
+document.getElementById("upgrade").addEventListener('click', async function selectedFilechanged1( ) {
   const cwclient = await SigningCosmWasmClient.connectWithSigner(
       rpcEndpoint,
       wallet2,
